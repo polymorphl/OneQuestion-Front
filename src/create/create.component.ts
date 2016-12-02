@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Question } from '../classes/question.class';
 const STYLES = require('../../public/scss/main.scss');
 
 @Component({
@@ -7,10 +8,19 @@ const STYLES = require('../../public/scss/main.scss');
   styles: [STYLES, require('./create.component.scss')]
 })
 
-export class CreateComponent {
-  firstname: any;
-  question: any;
+export class CreateComponent implements OnInit {
+
+  public submitted: boolean
+  public model: Question
+
+  ngOnInit() {
+    this.submitted = true;
+    this.model = new Question('default', 'default')
+    console.log(this.model);
+  }
+
   save() {
-    console.log(this.question);
+    this.submitted = true;
+    console.log(this.model);
   }
 }

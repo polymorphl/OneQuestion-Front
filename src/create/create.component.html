@@ -1,3 +1,5 @@
-<input type="text" class="form-control" [(ngModel)]="firstname" placeholder="La loutre">
-<textarea id="" cols="30" rows="10" [(ngModel)]="question" placeholder="Pourquoi je ne peux m'empecher de casser des trucs sur mon ventre ???"></textarea>
-<button (click)="save(question)">Submit</button>
+<form (ngSubmit)="save()" #questionForm>
+    <input type="text" class="form-control" name="firstname" [(ngModel)]="model.firstname" placeholder="La loutre">
+    <textarea id="" cols="30" rows="10" name="question" [(ngModel)]="model.question" placeholder="Pourquoi je ne peux m'empecher de casser des trucs sur mon ventre ???"></textarea>
+    <button type="submit">Submit</button>
+</form>
