@@ -5,6 +5,10 @@ var commonConfig = require('./webpack.common.js');
 var helpers = require('./helpers');
 
 module.exports = webpackMerge(commonConfig, {
+  proxy: {
+    "/api/*" : "http://localhost:3000" // <- backend
+  },
+
   devtool: 'cheap-module-eval-source-map',
 
   output: {
@@ -21,6 +25,6 @@ module.exports = webpackMerge(commonConfig, {
 
   devServer: {
     historyApiFallback: true,
-    stats: 'minimal'
+    stats: 'minimal',
   }
 });

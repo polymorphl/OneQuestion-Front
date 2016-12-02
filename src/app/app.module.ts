@@ -12,7 +12,6 @@ import { CreatedComponent } from '../created/created.component'
 import { OwnerComponent } from '../owner/owner.component'
 import { ContributorComponent } from '../contributor/contributor.component'
 
-
 @NgModule({
   imports: [
       BrowserModule,

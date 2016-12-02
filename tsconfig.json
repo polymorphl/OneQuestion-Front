@@ -19,12 +19,7 @@
   },
   "filesGlob": [
     "./src/**/*.ts",
-    "./test/**/*.ts",
-    "!./node_modules/**/*.ts",
-    "src/custom_typings.d.ts",
-    "typings/browser.d.ts"
+    "!./node_modules/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": [ "node_modules" ]
 }

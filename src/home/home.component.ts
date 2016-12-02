@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
+
 const STYLES = require('../../public/scss/main.scss');
 
 @Component({
@@ -7,4 +8,4 @@ const STYLES = require('../../public/scss/main.scss');
   styles: [STYLES, require('./home.component.scss')]
 })
 
-export class HomeComponent { }
+export class HomeComponent {}
