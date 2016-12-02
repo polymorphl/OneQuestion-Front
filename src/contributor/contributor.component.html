@@ -1,0 +1,21 @@
+<div>
+    <h1>{{model.question}}</h1>
+    <div *ngFor="let response of model.responses">
+        <div>
+            <b>{{response.firstname}}</b>
+            <p style="margin-top: 0">{{response.response}}</p>
+        </div>
+    </div>
+    <hr>
+    <form (ngSubmit)="addResponse()" #questionForm>
+        <label for="firstname">Ton pseudo lapin:</label>
+        <input type="text" name="firstname" [(ngModel)]="newResponse.firstname">
+        <br>
+        <label for="newResponse">Ta réponse mec: </label>
+        <textarea cols="30" rows="10" name="newResponse" [(ngModel)]="newResponse.response"></textarea>
+        <button type="submit">Submit</button>
+    </form>
+    <div [hidden]="!submitted">
+        Putain mec t'as submit !
+    </div>
+</div>

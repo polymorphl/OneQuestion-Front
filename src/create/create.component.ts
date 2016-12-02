@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Question } from '../classes/question.class';
+import { Router } from '@angular/router'
 const STYLES = require('../../public/scss/main.scss');
 
 @Component({
@@ -10,17 +11,20 @@ const STYLES = require('../../public/scss/main.scss');
 
 export class CreateComponent implements OnInit {
 
-  public submitted: boolean
+  constructor(
+      private router: Router,
+  ) {}
+
   public model: Question
 
-  ngOnInit() {
-    this.submitted = true;
+  ngOnInit(): void {
     this.model = new Question('default', 'default')
-    console.log(this.model);
+    console.log(this.model, 'yo');
   }
 
-  save() {
-    this.submitted = true;
-    console.log(this.model);
+  save(): boolean {
+    // CALL API
+    this.router.navigate(['/created'])
+    return false;
   }
 }

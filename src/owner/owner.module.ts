@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule }  from '@angular/platform-browser';
 import { OwnerComponent } from './owner.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   imports: [
-    BrowserModule
+    BrowserModule,
+      FormsModule
   ],
   declarations: [
     OwnerComponent
