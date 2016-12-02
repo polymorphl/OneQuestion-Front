@@ -28,7 +28,7 @@ export class ContributorComponent implements OnInit {
     // save Response
     // get Response
 
-    this.model.responses.push(this.newResponse)
+    this.model.responses.push(new Response(this.newResponse.firstname, this.newResponse.response))
     this.submitted = true
   }
 }
