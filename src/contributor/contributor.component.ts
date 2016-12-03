@@ -28,12 +28,10 @@ export class ContributorComponent implements OnInit {
               console.log(data);
               this.fetched = true;
               this.question = data.question
-              this.responses = data.responses.map((e: any) => {
-                return {
-                  firstname: e.firstname,
-                  response: e.response
-                }
-              })
+              this.responses = data.responses
+                  .map((e: any) => (
+                    new Response(e.firstname, e.response)
+                  ))
             },
             error => {
               console.log(error)
