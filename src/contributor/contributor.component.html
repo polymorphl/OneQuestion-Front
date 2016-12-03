@@ -1,8 +1,8 @@
 <div>
-    <h1>{{model.question}}</h1>
-    <div *ngFor="let response of model.responses">
+    <h1>{{question.question}}</h1>
+    <div *ngFor="let response of responses">
         <div>
-            <b>{{response.firstname}}</b>
+            <b>{{response.firstname || 'anonymous'}}</b>
             <p style="margin-top: 0">{{response.response}}</p>
         </div>
     </div>

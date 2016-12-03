@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { Question } from '../classes/question.class'
 import { Response } from '../classes/response.class'
+import {QuestionService} from "../services/question.service";
 const STYLES = require('../../public/scss/main.scss')
 
 @Component({
@@ -11,24 +12,41 @@ const STYLES = require('../../public/scss/main.scss')
 
 export class ContributorComponent implements OnInit {
 
+  public fetched: boolean = false
   public submitted: boolean = false
-  public model: Question
+  public question: Question
+  public responses: Array<Response>
   public newResponse: Response
 
+  constructor(private questionService: QuestionService) {}
+
   ngOnInit() {
-    this.model = new Question('SSaluuut', 'Putain de bien ou quoi ????', [
-      new Response('Tropb1sesite', 'Ouais ca va putain de bien yo'),
-      new Response('user678', 'Vazy dis pas yo comme ça toi'),
-      new Response('stupeflipfan', 'azy la jte defonce')
-    ])
-    this.newResponse = new Response('', 'Putain j\'ai trop envie de répondre')
+    this.question = new Question('', '')
+    this.questionService.getQuestion()
+        .then(
+            data => {
+              console.log(data);
+              this.fetched = true;
+              this.question = data.question
+              this.responses = data.responses.map((e: any) => {
+                return {
+                  firstname: e.firstname,
+                  response: e.response
+                }
+              })
+            },
+            error => {
+              console.log(error)
+            }
+        )
+    this.newResponse = new Response('dzadada', 'Putain j\'ai trop envie de répondre')
   }
 
   addResponse() {
     // save Response
     // get Response
 
-    this.model.responses.push(new Response(this.newResponse.firstname, this.newResponse.response))
+    this.responses.push(new Response(this.newResponse.firstname, this.newResponse.response))
     this.submitted = true
   }
 }

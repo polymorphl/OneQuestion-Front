@@ -1,8 +1,11 @@
 <form (ngSubmit)="save()" #questionForm>
-    <input type="text" class="form-control" name="firstname" [(ngModel)]="model.firstname" placeholder="La loutre">
-    <textarea id="" cols="30" rows="10" name="question" [(ngModel)]="model.question" placeholder="Pourquoi je ne peux m'empecher de casser des trucs sur mon ventre ???"></textarea>
+    <input type="text" class="form-control" name="firstname" [(ngModel)]="question.firstname" placeholder="La loutre">
+    <textarea id="" cols="30" rows="10" name="question" [(ngModel)]="question.question" placeholder="Pourquoi je ne peux m'empecher de casser des trucs sur mon ventre ???"></textarea>
     <button type="submit">Save</button>
 </form>
-<div [hidden]="!submitted">
+<div [hidden]="!submitted || errorMessage.length">
     Bravo mec t'as save :)
+</div>
+<div [hidden]="!errorMessage.length">
+    {{"Wooooaw => " + errorMessage}}
 </div>

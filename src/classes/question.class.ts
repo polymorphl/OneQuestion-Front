@@ -5,7 +5,7 @@ export class Question {
     constructor(
         public firstname: string,
         public question: string,
-        public responses?: Array<Response>
+        public email?: string
     ) {
     }
 

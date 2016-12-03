@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule }  from '@angular/platform-browser';
 import { ContributorComponent } from './contributor.component';
 import {FormsModule} from "@angular/forms";
+import {QuestionService} from "../services/question.service";
+import {HttpClient} from "../services/http.service";
 
 @NgModule({
   imports: [
@@ -11,7 +13,8 @@ import {FormsModule} from "@angular/forms";
   declarations: [
     ContributorComponent
   ],
-  bootstrap: [ ContributorComponent ]
+  bootstrap: [ ContributorComponent ],
+  provicer: [QuestionService, HttpClient]
 })
 
 export class ContributorModule { }
