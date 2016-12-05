@@ -5,12 +5,12 @@ import {QuestionService} from "../services/question.service";
 const STYLES = require('../../public/scss/main.scss')
 
 @Component({
-  selector: 'contributor',
-  templateUrl: './contributor.component.html',
-  styles: [STYLES, require('./contributor.component.scss')]
+  selector: 'share',
+  templateUrl: 'share.component.html',
+  styles: [STYLES, require('./share.component.scss')]
 })
 
-export class ContributorComponent implements OnInit {
+export class ShareComponent implements OnInit {
 
   public fetched: boolean = false
   public submitted: boolean = false

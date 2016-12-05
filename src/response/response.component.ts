@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core'
-import { Question } from '../classes/question.class'
+import { Response } from '../classes/response.class'
 import { QuestionService } from '../services/question.service'
 const STYLES = require('../../public/scss/main.scss')
 
 @Component({
-  selector: 'owner',
-  templateUrl: 'owner.component.html',
-  styles: [STYLES, require('./owner.component.scss')]
+  selector: 'response',
+  templateUrl: 'response.component.html',
+  styles: [STYLES, require('./response.component.scss')]
 })
 
-export class OwnerComponent implements OnInit {
+export class ResponseComponent implements OnInit {
 
-  public question: Question = new Question('toto', 'tata')
+  public response: Response = new Response('', '')
   public submitted: boolean = false
   public errorMessage: string = ''
 
@@ -24,13 +24,13 @@ export class OwnerComponent implements OnInit {
         .then(
             data => {
               console.log(data);
-              this.question = data.question;
+              this.response = data.question;
             })
   }
 
   save() {
     // API CALL
-    this.questionService.saveQuestion(this.question)
+/*    this.questionService.saveQuestion(this.response)
         .then(
             data => {
               console.log(data)
@@ -40,6 +40,7 @@ export class OwnerComponent implements OnInit {
             }
         )
     this.submitted = true;
+    */
   }
 
 }

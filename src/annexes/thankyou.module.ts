@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule }  from '@angular/platform-browser';
-import { ContributorComponent } from './contributor.component';
+import { ThankYouComponent } from './thankyou.component';
 import {FormsModule} from "@angular/forms";
-import {QuestionService} from "../services/question.service";
 import {HttpClient} from "../services/http.service";
+import {QuestionService} from "../services/question.service";
 
 @NgModule({
   imports: [
@@ -11,10 +11,10 @@ import {HttpClient} from "../services/http.service";
       FormsModule
   ],
   declarations: [
-    ContributorComponent
+    ThankYouComponent
   ],
-  bootstrap: [ ContributorComponent ],
-  provicer: [QuestionService, HttpClient]
+  bootstrap: [ ThankYouComponent ],
+  providers: [QuestionService, HttpClient]
 })
 
-export class ContributorModule { }
+export class ThankYouModule { }

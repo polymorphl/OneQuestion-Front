@@ -11,9 +11,12 @@ import { HomeComponent } from '../home/home.component'
 import { CreateComponent } from '../create/create.component'
 import { CreatedComponent } from '../created/created.component'
 import { OwnerComponent } from '../owner/owner.component'
-import { ContributorComponent } from '../contributor/contributor.component'
+import { ShareComponent } from '../share/share.component'
 import {QuestionService} from "../services/question.service";
 import {HttpClient} from "../services/http.service";
+import {ResponseComponent} from "../response/response.component";
+import {ThankYouComponent} from "../annexes/thankyou.component";
+import {BackOfficeComponent} from "../backoffice/backoffice.component";
 
 @NgModule({
     imports: [
@@ -29,7 +32,10 @@ import {HttpClient} from "../services/http.service";
         CreateComponent,
         CreatedComponent,
         OwnerComponent,
-        ContributorComponent
+        ShareComponent,
+        ResponseComponent,
+        ThankYouComponent,
+        BackOfficeComponent
     ],
     bootstrap: [ AppComponent ],
     providers: [ QuestionService, HttpClient ]

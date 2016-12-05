@@ -2,21 +2,21 @@ import { HttpClient } from './http.service'
 import { Question } from '../classes/question.class'
 import {Response} from '@angular/http';
 import { Injectable } from '@angular/core'
+import { saveQuestionUrl, getQuestionsUrl, createQuestionUrl } from '../routes'
 
 import { Observable }     from 'rxjs/Observable'
-
 
 @Injectable()
 export class QuestionService {
 
-    constructor (private http: HttpClient) {}
+    private saveQuestionUrl = saveQuestionUrl
+    private getQuestionsUrl = getQuestionsUrl
+    private createQuestionUrl = createQuestionUrl
+    constructor (
+        private http: HttpClient,
+    ) {}
 
     // private instance variable to hold base url
-    private host: string = "http://localhost:3000"
-    private saveQuestionUrl: string = this.host + '/question/1234/admin'
-    // getquestions => on a besoin d'une qui /questions en get
-    private getQuestionsUrl: string = this.host  + '/v1/questions'
-    private createQuestionUrl: string = this.host +'/create'
 
     public saveQuestion(question: Question): Promise<Response> {
         return new Promise((resolve, reject) => {
@@ -53,7 +53,7 @@ export class QuestionService {
         )
     }
 
-    public createQuestion(question: Question): Promise<Question> {
+    public createQuestion(question: Question): Promise<any> {
         return this.http.post(this.createQuestionUrl, question)
     }
 
