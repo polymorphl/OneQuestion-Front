@@ -67,7 +67,7 @@ export class OwnerComponent implements OnInit {
     this.questionService.deleteQuestion(this.mixed_shortcode, this.question)
         .then(
             data => {
-              this.router.navigate(['/'])
+              this.router.navigate(['/thankyou'])
             },
             error => {
               this.errorMessage = error.status + " " + error.statusText

@@ -7,14 +7,12 @@
         </div>
     </div>
     <hr>
-    <form (ngSubmit)="addResponse()" #questionForm>
-        <label for="firstname">Ton pseudo lapin:</label>
-        <input type="text" name="firstname" [(ngModel)]="newResponse.firstname">
-        <br>
-        <label for="newResponse">Ta réponse mec: </label>
-        <textarea cols="30" rows="10" name="newResponse" [(ngModel)]="newResponse.response"></textarea>
-        <button type="submit">Submit</button>
-    </form>
+    <label for="firstname">Ton pseudo lapin:</label>
+    <input type="text" name="firstname" [(ngModel)]="newResponse.firstname">
+    <br>
+    <label for="newResponse">Ta réponse mec: </label>
+    <textarea cols="30" rows="10" name="newResponse" [(ngModel)]="newResponse.response"></textarea>
+    <button (click)="addResponse()">Submit</button>
     <div [hidden]="!submitted">
         Putain mec t'as submit !
     </div>

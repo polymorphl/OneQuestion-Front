@@ -6,6 +6,7 @@ import { ShareComponent } from './share/share.component'
 import { ResponseComponent } from './response/response.component'
 import {BackOfficeComponent} from "./backoffice/backoffice.component";
 import {NotFoundComponent} from "./notfound/notfound.component";
+import {ThankYouComponent} from "./annexes/thankyou.component";
 
 const host: string = "http://localhost:3000/v1"
 
@@ -30,6 +31,7 @@ const appRoutes = [
     { path: 'question/:share_shortcode', component: ShareComponent },
     { path: 'response/:mixed_shortcode/admin', component: ResponseComponent},
     { path: 'backoffice', component: BackOfficeComponent},
+    { path: 'thankyou', component: ThankYouComponent},
     { path: '**', component: NotFoundComponent}
 ]
 
