@@ -11,11 +11,6 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
  * Webpack Constants
  */
 const HMR = helpers.hasProcessFlag('hot');
-const METADATA = {
-  title: 'Angular2 Webpack Starter by @gdi2290 from @AngularClass',
-  baseUrl: '/',
-  isDevServer: helpers.isWebpackDevServer()
-};
 
 
 /*
@@ -36,7 +31,7 @@ module.exports = function (options) {
        *
        * See: http://webpack.github.io/docs/configuration.html#resolve-extensions
        */
-      extensions: ['.ts', '.js', '.json'],
+      extensions: ['.ts', '.js', '.scss', '.pug', '.json'],
       // An array of directory names to be resolved to the current directory
       modules: [helpers.root('src'), helpers.root('node_modules')],
     },
@@ -44,6 +39,7 @@ module.exports = function (options) {
       rules: [
         { test: /\.ts$/, exclude: /node_modules/, loader: ['awesome-typescript-loader', 'angular2-template-loader'] },
         { test: /\.json$/, loader: 'json-loader' },
+        { test: /\.pug$/, loader: 'pug-html-loader' },
         { test: /\.html/, loader: 'html-loader?minimize=false', exclude: [helpers.root('src/index.html')] },
         { test: /\.scss$/, loader: 'raw-loader!sass-loader' },
         { test: /\.css$/, loader: 'style-loader!css-loader' },

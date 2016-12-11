@@ -6,7 +6,7 @@ const STYLES = require('../../public/scss/main.scss')
 
 @Component({
     selector: 'create',
-    templateUrl: 'create.component.html',
+    template: require('./create.component.pug'),
     styles: [STYLES, require('./create.component.scss')]
 })
 

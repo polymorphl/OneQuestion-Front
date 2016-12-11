@@ -5,7 +5,7 @@
   "scripts": {
     "start": "webpack-dev-server --config config/webpack.dev.js",
     "watch": "npm run start",
-    "build": "webpack-dev-server --config config/webpack.prod.js"
+    "build": "webpack --config config/webpack.prod.js"
   },
   "license": "",
   "dependencies": {
@@ -35,6 +35,7 @@
     "json-loader": "^0.5.4",
     "node-sass": "^3.13.0",
     "null-loader": "^0.1.1",
+    "pug-html-loader": "^1.0.9",
     "raw-loader": "^0.5.1",
     "rimraf": "^2.5.4",
     "sass-loader": "^4.0.2",
