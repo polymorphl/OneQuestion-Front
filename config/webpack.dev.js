@@ -1,5 +1,4 @@
 var helpers = require('./helpers');
-var path = require('path');
 var webpackMerge = require('webpack-merge');
 var commonConfig = require('./webpack.common.js');
 
@@ -44,7 +43,7 @@ module.exports = function(opt) {
       port: 8080,
       historyApiFallback: true,
       stats: 'minimal',
-      contentBase: path.join(__dirname, "src"),
+      contentBase: helpers.root('src'),
       watchOptions: {
         aggregateTimeout: 300,
         poll: 1000
