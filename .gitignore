@@ -1,4 +1,6 @@
 node_modules/
 .idea/
-src/**/*.js
-src/**/*.js.map
+**/*.js
+**/*.js.map
+*.log
+dist/
