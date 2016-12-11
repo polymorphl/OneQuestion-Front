@@ -5,21 +5,32 @@ import { OwnerComponent } from './owner/owner.component'
 import { ShareComponent } from './share/share.component'
 import { ResponseComponent } from './response/response.component'
 import {BackOfficeComponent} from "./backoffice/backoffice.component";
+import {NotFoundComponent} from "./notfound/notfound.component";
 
 const host: string = "http://localhost:3000/v1"
 
-export const saveQuestionUrl: string = host + '/question/1234/admin'
+// question
+export const saveQuestionUrl: string = host + '/question/'
 export const getQuestionsUrl: string = host  + '/questions'
+export const getQuestionUrl: string = host  + '/question/'
 export const createQuestionUrl: string = host +'/create'
+export const deleteQuestionUrl: string = host + '/question/'
+// ---------
+
+// response
+export const createResponseUrl: string = host + '/response/'
+export const saveResponseUrl: string = host + '/response/'
+// ---------
 
 const appRoutes = [
     { path: '', component: HomeComponent },
     { path: 'create', component: CreateComponent },
-    { path: 'created/:owner_shortcode/:contributor_shortcode', component: CreatedComponent },
+    { path: 'created/:owner_shortcode/:share_shortcode', component: CreatedComponent },
     { path: 'question/:mixed_shortcode/admin', component: OwnerComponent },
-    { path: 'question/:contributor_shortcode', component: ShareComponent },
+    { path: 'question/:share_shortcode', component: ShareComponent },
     { path: 'response/:mixed_shortcode/admin', component: ResponseComponent},
-    { path: 'backoffice', component: BackOfficeComponent}
+    { path: 'backoffice', component: BackOfficeComponent},
+    { path: '**', component: NotFoundComponent}
 ]
 
 export default appRoutes

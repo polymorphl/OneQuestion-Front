@@ -29,8 +29,7 @@ export class CreateComponent implements OnInit {
         this.questionService.createQuestion(this.question)
             .then(
                 (keys) => {
-                    console.log(keys);
-                    this.router.navigate(['/created/' + keys.owner_id + '/' + keys.contributor_id])
+                    this.router.navigate(['/created/' + keys.owner_data.owner_shortcode + '/' + keys.share_shortcode])
                 },
                 (error:string) =>  this.errorMessage = <any>error
             )

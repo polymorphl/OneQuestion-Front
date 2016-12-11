@@ -1,6 +1,5 @@
 <div>
-    <h2>Woaw nice you finally done the previous form</h2>
     <h3>here are your links</h3>
-    <div><a [routerLink]="['/question/' + owner_shortcode + '/admin']">link owner</a></div>
-    <div><a [routerLink]="['/question/'] + share_shortcode">link contributor</a></div>
+    <div><a [routerLink]="['/question/' + owner_shortcode + share_shortcode + '/admin']">edit link</a></div>
+    <div><a [routerLink]="['/question/' + share_shortcode]">share link</a></div>
 </div>

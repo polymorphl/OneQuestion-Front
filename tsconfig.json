@@ -21,5 +21,9 @@
     "./src/**/*.ts",
     "!./node_modules/**/*.ts"
   ],
+  "include": [
+    "src/**/*.scss",
+    "public/scss/**/*.scss"
+  ],
   "exclude": [ "node_modules" ]
 }

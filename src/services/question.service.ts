@@ -2,25 +2,25 @@ import { HttpClient } from './http.service'
 import { Question } from '../classes/question.class'
 import {Response} from '@angular/http';
 import { Injectable } from '@angular/core'
-import { saveQuestionUrl, getQuestionsUrl, createQuestionUrl } from '../routes'
+import { saveQuestionUrl, createQuestionUrl, getQuestionUrl, deleteQuestionUrl } from '../routes'
 
 import { Observable }     from 'rxjs/Observable'
 
 @Injectable()
 export class QuestionService {
 
-    private saveQuestionUrl = saveQuestionUrl
-    private getQuestionsUrl = getQuestionsUrl
-    private createQuestionUrl = createQuestionUrl
     constructor (
         private http: HttpClient,
     ) {}
 
-    // private instance variable to hold base url
+    private saveQuestionUrl: string = saveQuestionUrl
+    private getQuestionUrl: string = getQuestionUrl
+    private createQuestionUrl: string = createQuestionUrl
+    private deleteQuestionUrl: string = deleteQuestionUrl
 
-    public saveQuestion(question: Question): Promise<Response> {
+    public saveQuestion(mixed_shortcode: string, question: Question): Promise<Response> {
         return new Promise((resolve, reject) => {
-            return this.http.post(this.saveQuestionUrl, question)
+            return this.http.post(this.saveQuestionUrl + mixed_shortcode + "/edit", question)
                 .then(
                     data => {
                         resolve(data)
@@ -32,23 +32,31 @@ export class QuestionService {
         })
     }
 
-    public getQuestion(): Promise<any>{
+    public deleteQuestion(mixed_shortcode: string, question: Question): Promise<Response> {
         return new Promise((resolve, reject) => {
-            return this.http.get(this.getQuestionsUrl)
+            return this.http.post(this.deleteQuestionUrl + mixed_shortcode + "/delete", question)
                 .then(
-                    (data) => {
-                        const question = data[0]
-                        console.log(question)
-                        resolve({
-                            question: new Question(question.firstname, question.question),
-                            responses: question.responses
-                        })
+                    data => {
+                        resolve(data)
                     },
                     error => {
-                        console.log(error)
                         reject(error)
                     }
                 )
+        })
+    }
+
+    public getQuestion(share_shortcode: string): Promise<any>{
+        return new Promise((resolve, reject) => {
+                return this.http.get(this.getQuestionUrl + share_shortcode)
+                    .then(
+                        (data) => {
+                            resolve(data)
+                        },
+                        error => {
+                            reject(error)
+                        }
+                    )
             }
         )
     }

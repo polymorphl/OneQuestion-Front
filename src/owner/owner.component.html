@@ -2,6 +2,7 @@
     <input type="text" class="form-control" name="firstname" [(ngModel)]="question.firstname" placeholder="La loutre">
     <textarea id="" cols="30" rows="10" name="question" [(ngModel)]="question.question" placeholder="Pourquoi je ne peux m'empecher de casser des trucs sur mon ventre ???"></textarea>
     <button type="submit">Save</button>
+    <button type="submit">Delete</button>
 </form>
 <div [hidden]="!submitted || errorMessage.length">
     Bravo mec t'as save :)

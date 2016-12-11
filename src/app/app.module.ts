@@ -17,6 +17,7 @@ import {HttpClient} from "../services/http.service";
 import {ResponseComponent} from "../response/response.component";
 import {ThankYouComponent} from "../annexes/thankyou.component";
 import {BackOfficeComponent} from "../backoffice/backoffice.component";
+import {NotFoundComponent} from "../notfound/notfound.component";
 
 @NgModule({
     imports: [
@@ -35,7 +36,8 @@ import {BackOfficeComponent} from "../backoffice/backoffice.component";
         ShareComponent,
         ResponseComponent,
         ThankYouComponent,
-        BackOfficeComponent
+        BackOfficeComponent,
+        NotFoundComponent
     ],
     bootstrap: [ AppComponent ],
     providers: [ QuestionService, HttpClient ]
