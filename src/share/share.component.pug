@@ -1,0 +1,15 @@
+div
+    h1 {{question.question}}
+    div(*ngfor='let response of responses')
+        div
+            b {{response.firstname || 'anonymous'}}
+            p(style='margin-top: 0') {{response.response}}
+    hr
+    label(for='firstname') Ton pseudo lapin:
+    input(type='text', name='firstname', [(ngmodel)]='newResponse.firstname')
+    br
+    label(for='newResponse') Ta réponse mec:
+    textarea(cols='30', rows='10', name='newResponse', [(ngmodel)]='newResponse.response')
+    button((click)='addResponse()') Submit
+    div([hidden]='!submitted')
+        | Putain mec t'as submit !

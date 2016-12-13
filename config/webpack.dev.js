@@ -1,53 +1,26 @@
-var helpers = require('./helpers');
 var webpackMerge = require('webpack-merge');
-var commonConfig = require('./webpack.common.js');
-
-/**
- * Webpack Plugins
- */
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var commonConfig = require('./webpack.common.js');
+var helpers = require('./helpers');
 
-/**
- * Webpack Constants
- */
-const ENV = process.env.ENV = process.env.NODE_ENV = 'development';
-const HOST = process.env.HOST || 'localhost';
-const PORT = process.env.PORT || 8080;
-const HMR = helpers.hasProcessFlag('hot');
-const METADATA = webpackMerge(commonConfig({env: ENV}).metadata, {
-  host: HOST,
-  port: PORT,
-  ENV: ENV,
-  HMR: HMR
-});
-
-
-
-
-module.exports = function(opt) {
-  return webpackMerge(commonConfig({env: ENV}), {
+module.exports = webpackMerge(commonConfig, {
     devtool: 'cheap-module-eval-source-map',
 
     output: {
-      path: helpers.root('dist'),
-      publicPath: 'http://localhost:8080/',
-      filename: '[name].bundle.js',
-      chunkFilename: '[id].chunk.js'
+        path: helpers.root('src'),
+        publicPath: 'http://localhost:8080/',
+        filename: '[name].js',
+        chunkFilename: '[id].chunk.js'
     },
 
     plugins: [
-      new ExtractTextPlugin('[name].css')
+        new ExtractTextPlugin('[name].css')
     ],
 
     devServer: {
-      port: 8080,
-      historyApiFallback: true,
-      stats: 'minimal',
-      contentBase: helpers.root('src'),
-      watchOptions: {
-        aggregateTimeout: 300,
-        poll: 1000
-      }
+        historyApiFallback: true,
+        stats: 'minimal',
+        port: 8080,
+        contentBase: helpers.root('src')
     }
-  });
-};
+});

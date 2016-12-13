@@ -7,7 +7,7 @@ const STYLES = require('../../public/scss/main.scss')
 
 @Component({
   selector: 'share',
-  templateUrl: 'share.component.html',
+  templateUrl: 'share.component.pug',
   styles: [STYLES, require('./share.component.scss')]
 })
 

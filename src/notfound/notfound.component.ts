@@ -4,7 +4,7 @@ const STYLES = require('../../public/scss/main.scss');
 
 @Component({
   selector: 'notfound',
-  templateUrl: 'notfound.component.html',
+  templateUrl: 'notfound.component.pug',
   styles: [STYLES, require('./notfound.component.scss')]
 })
 

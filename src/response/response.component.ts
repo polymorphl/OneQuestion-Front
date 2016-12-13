@@ -6,7 +6,7 @@ const STYLES = require('../../public/scss/main.scss')
 
 @Component({
   selector: 'response',
-  templateUrl: 'response.component.html',
+  templateUrl: 'response.component.pug',
   styles: [STYLES, require('./response.component.scss')]
 })
 

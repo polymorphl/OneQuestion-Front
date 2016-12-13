@@ -3,7 +3,7 @@ const STYLES = require('../../public/scss/main.scss')
 
 @Component({
   selector: 'thankyou',
-  templateUrl: 'thankyou.component.html',
+  templateUrl: 'thankyou.component.pug',
   styles: [STYLES, require('./thankyou.component.scss')]
 })
 

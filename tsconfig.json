@@ -6,24 +6,20 @@
     "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "removeComments": false,
+    "lib": ["es2015", "dom"],
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true,
     "typeRoots": [
       "../node_modules/@types"
     ],
     "types": [
-      "node",
-      "core-js"
+      "node"
     ]
   },
-  "filesGlob": [
-    "./src/**/*.ts",
-    "!./node_modules/**/*.ts"
-  ],
   "include": [
     "src/**/*.scss",
+    "src/**/*.pug",
+    "src/**/*.ts",
     "public/scss/**/*.scss"
-  ],
-  "exclude": [ "node_modules" ]
+  ]
 }

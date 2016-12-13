@@ -14,7 +14,7 @@ import {HttpClient} from "../services/http.service";
     ShareComponent
   ],
   bootstrap: [ ShareComponent ],
-  provicer: [QuestionService, HttpClient]
+  providers: [QuestionService, HttpClient]
 })
 
 export class ShareModule { }
