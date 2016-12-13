@@ -1,5 +1,5 @@
-import { HttpClient } from '../services/http.service'
-import { Question } from '../classes/question.class'
+import { HttpClient } from '../../services/http.service'
+import { Question } from '../../classes/question.class'
 import { Injectable } from '@angular/core'
 import { getQuestionsUrl} from '../routes'
 

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core'
-import { Response } from '../classes/response.class'
-import { QuestionService } from '../services/question.service'
+import { Response } from '../../classes/response.class'
+import { QuestionService } from '../../services/question.service'
 import { Router, ActivatedRoute, Params } from '@angular/router';
-const STYLES = require('../../public/scss/main.scss')
+const STYLES = require('../../../public/scss/main.scss')
 
 @Component({
   selector: 'response',

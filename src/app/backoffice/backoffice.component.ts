@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-const STYLES = require('../../public/scss/main.scss');
+const STYLES = require('../../../public/scss/main.scss');
 
 @Component({
   selector: 'backoffice',

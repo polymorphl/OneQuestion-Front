@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core'
-import { Question } from '../classes/question.class'
+import { Question } from '../../classes/question.class'
 import { Router } from '@angular/router'
-import { QuestionService } from '../services/question.service'
-const STYLES = require('../../public/scss/main.scss')
+import { QuestionService } from '../../services/question.service'
+const STYLES = require('../../../public/scss/main.scss')
 
 @Component({
     selector: 'create',
-    template: './create.component.pug',
+    templateUrl: 'create.component.pug',
     styles: [STYLES, require('./create.component.scss')]
 })
 
@@ -21,7 +21,7 @@ export class CreateComponent implements OnInit {
     public question: Question
 
     ngOnInit(): void {
-        this.question = new Question('monsieurOuille', 'Je te pose une question moi ?', '')
+        this.question = new Question('PersonnePasNormale', 'Bonjour je recherche du clax, ça clax ici ?', 'toto@toto.com')
     }
 
     save(): boolean {
@@ -29,7 +29,7 @@ export class CreateComponent implements OnInit {
         this.questionService.createQuestion(this.question)
             .then(
                 (keys) => {
-                    this.router.navigate(['/created/' + keys.owner_data.owner_shortcode + '/' + keys.share_shortcode])
+                    this.router.navigate(['/created/' + keys.owner_data.owner_shortcode + keys.share_shortcode])
                 },
                 (error:string) =>  this.errorMessage = <any>error
             )

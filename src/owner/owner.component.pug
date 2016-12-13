@@ -1,8 +1,0 @@
-input.form-control(type='text', name='firstname', [(ngmodel)]='question.firstname', placeholder='La loutre')
-textarea(id='', cols='30', rows='10', name='question', [(ngmodel)]='question.question', placeholder="Pourquoi je ne peux m'empecher de casser des trucs sur mon ventre ???")
-button((click)='save()') Save
-button((click)='delete()') Delete
-div([hidden]='!submitted || errorMessage.length')
-    | Bravo mec t'as save :)
-div([hidden]='!errorMessage.length')
-    | {{"oups => " + errorMessage}}

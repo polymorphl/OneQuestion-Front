@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core'
-import { Question } from '../classes/question.class'
-import { QuestionService } from '../services/question.service'
+import { Question } from '../../classes/question.class'
+import { QuestionService } from '../../services/question.service'
 import { Router, ActivatedRoute, Params } from '@angular/router';
-const STYLES = require('../../public/scss/main.scss')
+const STYLES = require('../../../public/scss/main.scss')
 
 @Component({
   selector: 'owner',
@@ -28,26 +28,26 @@ export class OwnerComponent implements OnInit {
   private share_shortcode: string
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      if (params['mixed_shortcode']) {
-        this.mixed_shortcode = params['mixed_shortcode']
-        this.owner_shortcode = params['mixed_shortcode'].substr(0, 12)
-        this.share_shortcode = params['mixed_shortcode'].substr(12, 24)
-        this.questionService.getQuestion(this.share_shortcode)
-            .then((data) => {
-              if (data.owner_shortcode !== this.owner_shortcode ||
-                  data.share_shortcode !== this.share_shortcode) {
-                this.router.navigate(['404'])
-              } else {
-                this.owner_id = data.owner.id.toString()
-                this.question = new Question(data.owner.firstname, data.question)
-              }
-            })
-            .catch((reason: any) => {
-              this.router.navigate(['404'])
-            })
-      }
-    })
+      this.route.params.subscribe(params => {
+          if (params['mixed_shortcode']) {
+              this.mixed_shortcode = params['mixed_shortcode']
+              this.owner_shortcode = params['mixed_shortcode'].substr(0, 12)
+              this.share_shortcode = params['mixed_shortcode'].substr(12, 24)
+              this.questionService.getQuestion(this.share_shortcode)
+                  .then((data) => {
+                      if (data.owner_shortcode !== this.owner_shortcode ||
+                          data.share_shortcode !== this.share_shortcode) {
+                          this.router.navigate(['404'])
+                      } else {
+                          this.owner_id = data.owner.id.toString()
+                          this.question = new Question(data.owner.firstname, data.question)
+                      }
+                  })
+                  .catch((reason: any) => {
+                      this.router.navigate(['404'])
+                  })
+          }
+      })
   }
 
   save() {

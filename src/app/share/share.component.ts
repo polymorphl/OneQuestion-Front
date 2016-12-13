@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core'
-import { Question } from '../classes/question.class'
-import { Response } from '../classes/response.class'
-import {QuestionService} from "../services/question.service";
+import { Question } from '../../classes/question.class'
+import { Response } from '../../classes/response.class'
+import {QuestionService} from "../../services/question.service";
 import { Router, ActivatedRoute, Params } from '@angular/router';
-const STYLES = require('../../public/scss/main.scss')
+const STYLES = require('../../../public/scss/main.scss')
 
 @Component({
   selector: 'share',
