@@ -2,9 +2,9 @@ h1 Owner dashboard
 div
     h3 here are your links
     div
-        a([routerLink]="['/question/' + owner_shortcode + share_shortcode + '/edit']") edit link
+        a([routerLink]="['/question/' + owner_shortcode + share_shortcode + '/edit']") edit link {{'http://onequestion.io/question/' + owner_shortcode + share_shortcode + '/edit'}}
     div
-        a([routerLink]="['/question/' + share_shortcode]") share link
+        a([routerLink]="['/question/' + share_shortcode]") share link {{'http://onequestion.io/question/' + share_shortcode}}
 div
     input.form-control(type='text', name='firstname', [(ngModel)]='question.firstname', placeholder='La loutre')
     textarea(id='', cols='30', rows='10', name='question', [(ngModel)]='question.question', placeholder="Pourquoi je ne peux m'empecher de casser des trucs sur mon ventre ???")
