@@ -1,25 +1,27 @@
 h1 Owner dashboard
 div
-    h3 here are your links
-    div
+    p Good job ! You have just created a new question to share trought the world
+    | We just send a message to your email box, to keep links at home.
+    h2 Below are your links
+    div(style="border: 1px solid black")
+        p This is your PRIVATE link, keep it like your eyes... Anyone with this link can edit/delete your question
         a([routerLink]="['/question/' + owner_shortcode + share_shortcode + '/edit']") edit link {{'http://onequestion.io/question/' + owner_shortcode + share_shortcode + '/edit'}}
-    div
+    div(style="border: 1px solid black; margin-top: 10px")
+        P This is your PUBLIC link, for share to anyone, and give responses possibilities
         a([routerLink]="['/question/' + share_shortcode]") share link {{'http://onequestion.io/question/' + share_shortcode}}
 div
-    input.form-control(type='text', name='firstname', [(ngModel)]='question.firstname', placeholder='La loutre')
-    textarea(id='', cols='30', rows='10', name='question', [(ngModel)]='question.question', placeholder="Pourquoi je ne peux m'empecher de casser des trucs sur mon ventre ???")
-    button((click)='save()') Save
-    button((click)='delete()') Delete
-    div([hidden]='!submitted || errorMessage.length')
-        | Bravo mec t'as save :)
-    div([hidden]='!errorMessage.length')
-        | {{"oups => " + errorMessage}}
+    h2 Edit your question here
+    div
+        input.form-control(type='text', name='firstname', [(ngModel)]='question.firstname', placeholder='La loutre')
+        textarea(id='', cols='30', rows='10', name='question', [(ngModel)]='question.question', placeholder="Pourquoi je ne peux m'empecher de casser des trucs sur mon ventre ???")
+        button((click)='save()') Save
+        button((click)='deleteQuestion()') Delete
+        div([hidden]='!submitted || errorMessage.length')
+            | Bravo mec t'as save :)
+        div([hidden]='!errorMessage.length')
+            | {{"oups => " + errorMessage}}
 hr
 div
-    button Refresh Answers
-    div([hidden]="responses && responses.length")
-        | 0 answers.
-    div(*ngFor='let response of responses')
-        div
-            b {{response.firstname}}
-            p(style='margin-top: 0') {{response.response}}
+    h2 See responses here
+    button((click)="init()") Refresh Answers
+    responses([responses]="responses")

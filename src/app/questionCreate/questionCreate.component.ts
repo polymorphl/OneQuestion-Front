@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { Question, QuestionService } from '../../services/question.service'
-import {UtilsService} from "../../services/utils.service";
+import {CommonService} from "../../services/common.service";
 const STYLES = require('../../../public/scss/main.scss')
 
 @Component({
@@ -15,7 +15,7 @@ export class QuestionCreateComponent implements OnInit {
     constructor(
         private router: Router,
         private questionService: QuestionService,
-        private utils: UtilsService
+        private common: CommonService
     ) {}
 
     public errorMessage: string
@@ -25,14 +25,8 @@ export class QuestionCreateComponent implements OnInit {
         this.question = new Question('PersonnePasNormale', 'Bonjour je recherche du clax, ça clax ici ?', 'toto@toto.com')
     }
 
-    private isValid(): boolean {
-        return !!this.question.firstname.length &&
-                !!this.question.question.length &&
-                this.utils.validateEmail(this.question.email)
-    }
-
     save(): boolean {
-        if (this.isValid()) {
+        if (this.common.isValidQuestion(this.question)) {
             this.questionService.createQuestion(this.question)
                 .then(
                     (keys) => {

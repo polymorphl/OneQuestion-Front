@@ -16,8 +16,10 @@ import {HttpClient} from "../services/http.service"
 import {AnswerAdminComponent} from "./answerAdmin/answerAdmin.component"
 import {ThankYouComponent} from "./annexes/thankYou/thankYou.component"
 import {NotFoundComponent} from "./annexes/notFound/notFound.component"
-import {UtilsService} from "../services/utils.service";
+import {CommonService} from "../services/common.service";
 import {AnswerService} from "../services/answer.service";
+import {ResponsesComponent} from "../components/responses/responses.component";
+import {QuestionComponent} from "../components/question/question.component";
 
 @NgModule({
     imports: [
@@ -35,7 +37,9 @@ import {AnswerService} from "../services/answer.service";
         QuestionPublicComponent,
         AnswerAdminComponent,
         ThankYouComponent,
-        NotFoundComponent
+        NotFoundComponent,
+        ResponsesComponent,
+        QuestionComponent
     ],
     bootstrap: [
         AppComponent
@@ -44,7 +48,7 @@ import {AnswerService} from "../services/answer.service";
         QuestionService,
         AnswerService,
         HttpClient,
-        UtilsService
+        CommonService
     ]
 })
 

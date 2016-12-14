@@ -1,0 +1,6 @@
+div([hidden]="responses && responses.length")
+    | 0 answers.
+div(*ngFor='let response of responses')
+    div
+        b {{response.firstname}} at {{response.created}}
+        p(style='margin-top: 0') {{response.response}}

@@ -6,7 +6,9 @@ export class Answer {
     constructor(
         public firstname: string,
         public response: string,
-        public email?: string
+        public email?: string,
+        public created?: string,
+        public updated?: string
     ) {}
 }
 

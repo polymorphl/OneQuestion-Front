@@ -1,0 +1,5 @@
+div
+    h1 {{question.question}}
+    div by {{question.firstname}}
+    div at {{question.created}}
+    div([hidden]="!question.updated") {{question.updated}}

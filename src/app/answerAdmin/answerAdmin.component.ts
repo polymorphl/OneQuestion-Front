@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { Answer, AnswerService } from '../../services/answer.service'
 import { Question, QuestionService } from '../../services/question.service'
 import { Router, ActivatedRoute } from '@angular/router'
+import {CommonService} from "../../services/common.service";
 const STYLES = require('../../../public/scss/main.scss')
 
 @Component({
@@ -21,35 +22,26 @@ export class AnswerAdminComponent implements OnInit {
     private mixed_shortcode: string
     private contributor_shortcode: string
     private share_shortcode: string
+    private myAnswer: Answer
 
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        public answerService: AnswerService
+        public answerService: AnswerService,
+        private utils: CommonService
     ) {}
 
     ngOnInit() {
-        this.route.params.subscribe(params => {
-            if (params['mixed_shortcode']) {
-                this.mixed_shortcode = params['mixed_shortcode']
-                this.contributor_shortcode = params['mixed_shortcode'].substr(0, 12)
-                this.share_shortcode = params['mixed_shortcode'].substr(12, 24)
-                this.answerService.getAnswer(this.share_shortcode)
-                    // .then((data) => {
-                    //     if (data.owner_shortcode !== this.contributor_shortcode ||
-                    //         data.share_shortcode !== this.share_shortcode) {
-                    //         this.router.navigate(['404'])
-                    //     } else {
-                    //         this.question = new Question(data.owner.firstname, data.question)
-                    //         this.responses = data.responses
-                    //             .map((e: any) => new Answer(e.contributor.firstname, e.response))
-                    //     }
-                    // })
-                    // .catch((reason: any) => {
-                    //     this.router.navigate(['404'])
-                    // })
-            }
-        })
+        this.utils.isValidContributor(this.route.params)
+            .then(
+                (data) => {
+                    this.question = new Question(data.question.firstname, data.question.question, data.question.created_at)
+                    this.myAnswer = new Answer(data.response.contributor.firstname, data.response.response)
+                    this.responses = data.responses.map(
+                        (e: any) => new Answer(e.contributor.firstname, e.response)
+                    )
+                }
+            )
     }
 
     save() {

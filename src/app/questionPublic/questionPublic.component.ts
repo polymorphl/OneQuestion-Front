@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { Answer, AnswerService } from '../../services/answer.service'
 import { Question, QuestionService} from "../../services/question.service"
 import { Router, ActivatedRoute } from '@angular/router'
-import {UtilsService} from "../../services/utils.service";
+import {CommonService} from "../../services/common.service";
 const STYLES = require('../../../public/scss/main.scss')
 
 @Component({
@@ -27,39 +27,26 @@ export class QuestionPublicComponent implements OnInit {
       private router: Router,
       private questionService: QuestionService,
       private answerService: AnswerService,
-      private utils: UtilsService
+      private common: CommonService
   ) {}
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.share_shortcode = params['share_shortcode']
-      this.questionService.getQuestion(this.share_shortcode)
-          .then((data) => {
-            if (data.share_shortcode !== this.share_shortcode) {
-              this.router.navigate(['404'])
-            } else {
+    this.common.isValidShare(this.route.params)
+        .then(
+            (data) => {
+              this.share_shortcode = data.share_shortcode
               this.fetched = true
-              this.question = new Question(data.owner.firstname, data.question)
+              this.question = new Question(data.owner.firstname, data.question, '', (new Date(data.created_at)).toDateString())
               this.responses = data.responses.map((e: any) => (
-                  new Answer(e.contributor.firstname, e.response)
+                  new Answer(e.contributor.firstname, e.response, '', (new Date(e.created_at)).toDateString())
               ))
             }
-          })
-          .catch((reason: any) => {
-            this.router.navigate(['404'])
-          })
-    })
+        )
     this.newAnswer = new Answer('yolasticot', 'Putain j\'ai trop envie de répondre')
   }
 
-  private isValid(): boolean {
-    return !!this.newAnswer.firstname.length &&
-        !!this.newAnswer.response.length &&
-        this.utils.validateEmail(this.newAnswer.email)
-  }
-
   addResponse() {
-    if (this.isValid()) {
+    if (this.common.isValidAnswer(this.newAnswer)) {
       this.answerService.createAnswer(this.newAnswer, this.share_shortcode)
           .then(
               (keys) => {

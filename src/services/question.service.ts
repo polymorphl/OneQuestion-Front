@@ -7,7 +7,9 @@ export class Question {
     constructor(
         public firstname: string,
         public question: string,
-        public email?: string
+        public email?: string,
+        public created?: string,
+        public updated?: string
     ) {}
 }
 
@@ -24,25 +26,15 @@ export class QuestionService {
     private deleteQuestionUrl: string = deleteQuestionUrl
 
     public saveQuestion(mixed_shortcode: string, question: Question): Promise<Response> {
-        return new Promise((resolve, reject) => {
-            return this.http.post(this.saveQuestionUrl + mixed_shortcode + "/edit", question)
-                .then(data => {resolve(data)}, error => {reject(error)})
-        })
+        return this.http.post(this.saveQuestionUrl + mixed_shortcode + "/edit", question)
     }
 
     public deleteQuestion(mixed_shortcode: string, question: Question): Promise<Response> {
-        return new Promise((resolve, reject) => {
-            return this.http.post(this.deleteQuestionUrl + mixed_shortcode + "/delete", question)
-                .then(data => {resolve(data)}, error => {reject(error)})
-        })
+        return this.http.post(this.deleteQuestionUrl + mixed_shortcode + "/delete", question)
     }
 
     public getQuestion(share_shortcode: string): Promise<any>{
-        return new Promise((resolve, reject) => {
-                return this.http.get(this.getQuestionUrl + share_shortcode)
-                    .then(data => {resolve(data)}, error => {reject(error)})
-            }
-        )
+        return this.http.get(this.getQuestionUrl + share_shortcode)
     }
 
     public createQuestion(question: Question): Promise<any> {
