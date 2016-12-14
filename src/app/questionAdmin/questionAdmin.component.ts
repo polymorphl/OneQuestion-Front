@@ -35,7 +35,7 @@ export class QuestionAdminComponent implements OnInit {
     }
 
     init() {
-        this.common.isValidMixed(this.route.params)
+        this.common.isValidMixed(this.route.params, "questionService", "getQuestion")
             .then(
                 (data) => {
                     this.mixed_shortcode = data.owner.owner_shortcode + data.share_shortcode

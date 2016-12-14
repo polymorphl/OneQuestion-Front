@@ -32,12 +32,13 @@ export class AnswerAdminComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.utils.isValidMixed(this.route.params)
+        this.utils.isValidMixed(this.route.params, "answerService", "getAnswer", "contributor")
             .then(
                 (data) => {
-                    this.question = new Question(data.question.firstname, data.question.question, data.question.created_at)
-                    this.myAnswer = new Answer(data.response.contributor.firstname, data.response.response)
-                    this.responses = data.responses.map(
+                    debugger;
+                    this.question = new Question(data.question.firstname || 'defaultName', data.question.question, data.question.created_at)
+                    this.myAnswer = new Answer(data.contributor.firstname, data.response)
+                    this.responses = data.question.responses.map(
                         (e: any) => new Answer(e.contributor.firstname, e.response)
                     )
                 }

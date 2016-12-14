@@ -47,19 +47,27 @@ export class CommonService {
             this.validateEmail(answer.email)
     }
 
-    public isValidMixed(params: any): Promise<any> {
+    public isValidMixed(params: any, serviceName: string, funcName: string, code?: string): Promise<any> {
         return new Promise((resolve) => {
             params.subscribe((params: any) => {
                 if (params['mixed_shortcode']) {
                     const owner_shortcode: string = params['mixed_shortcode'].substr(0, 12)
                     const share_shortcode: string = params['mixed_shortcode'].substr(12, 24)
-                    this.questionService.getQuestion(share_shortcode)
-                        .then((data) => {
-                            if (data.owner_shortcode !== owner_shortcode ||
-                                data.share_shortcode !== share_shortcode) {
-                                this.router.navigate(['404'])
+                    this[serviceName][funcName](code ? owner_shortcode : share_shortcode)
+                        .then((data: any) => {
+                            if (code) {
+                                if (data.contributor_shortcode !== owner_shortcode) {
+                                    this.router.navigate(['404'])
+                                } else {
+                                    resolve(data)
+                                }
                             } else {
-                                resolve(data)
+                                if (data.owner_shortcode !== owner_shortcode ||
+                                    data.share_shortcode !== share_shortcode) {
+                                    this.router.navigate(['404'])
+                                } else {
+                                    resolve(data)
+                                }
                             }
                         })
                         .catch((reason: any) => {
