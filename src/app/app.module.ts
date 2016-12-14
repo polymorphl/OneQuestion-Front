@@ -1,23 +1,23 @@
 import { NgModule } from '@angular/core'
 import { BrowserModule }  from '@angular/platform-browser'
 import { AppComponent } from './app.component'
-import { FormsModule }   from '@angular/forms';
-import { RouterModule, Routes } from '@angular/router'
-import { HttpModule, JsonpModule }  from '@angular/http';
+import { FormsModule }   from '@angular/forms'
+import { RouterModule } from '@angular/router'
+import { HttpModule, JsonpModule }  from '@angular/http'
 
 import appRoutes from '../routes'
 
-import { HomeComponent } from './home/home.component'
-import { CreateComponent } from './create/create.component'
-import { CreatedComponent } from './created/created.component'
-import { OwnerComponent } from './owner/owner.component'
-import { ShareComponent } from './share/share.component'
-import {QuestionService} from "../services/question.service";
-import {HttpClient} from "../services/http.service";
-import {ResponseComponent} from "./response/response.component";
-import {ThankYouComponent} from "./annexes/thankyou.component";
-import {BackOfficeComponent} from "./backoffice/backoffice.component";
-import {NotFoundComponent} from "./notfound/notfound.component";
+import { HomeComponent } from './annexes/home/home.component'
+import { QuestionCreateComponent } from './questionCreate/questionCreate.component'
+import { QuestionAdminComponent } from './questionAdmin/questionAdmin.component'
+import { QuestionPublicComponent } from './questionPublic/questionPublic.component'
+import {QuestionService} from "../services/question.service"
+import {HttpClient} from "../services/http.service"
+import {AnswerAdminComponent} from "./answerAdmin/answerAdmin.component"
+import {ThankYouComponent} from "./annexes/thankYou/thankYou.component"
+import {NotFoundComponent} from "./annexes/notFound/notFound.component"
+import {UtilsService} from "../services/utils.service";
+import {AnswerService} from "../services/answer.service";
 
 @NgModule({
     imports: [
@@ -30,17 +30,22 @@ import {NotFoundComponent} from "./notfound/notfound.component";
     declarations: [
         AppComponent,
         HomeComponent,
-        CreateComponent,
-        CreatedComponent,
-        OwnerComponent,
-        ShareComponent,
-        ResponseComponent,
+        QuestionCreateComponent,
+        QuestionAdminComponent,
+        QuestionPublicComponent,
+        AnswerAdminComponent,
         ThankYouComponent,
-        BackOfficeComponent,
         NotFoundComponent
     ],
-    bootstrap: [ AppComponent ],
-    providers: [ QuestionService, HttpClient ]
+    bootstrap: [
+        AppComponent
+    ],
+    providers: [
+        QuestionService,
+        AnswerService,
+        HttpClient,
+        UtilsService
+    ]
 })
 
 export class AppModule { }

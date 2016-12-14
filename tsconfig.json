@@ -16,10 +16,13 @@
       "node"
     ]
   },
+  "filesGlob": [
+    "./src/**/*.ts",
+    "!./node_modules/**/*.ts"
+  ],
   "include": [
     "src/**/*.scss",
-    "src/**/*.pug",
-    "src/**/*.ts",
     "public/scss/**/*.scss"
-  ]
+  ],
+  "exclude": [ "node_modules" ]
 }

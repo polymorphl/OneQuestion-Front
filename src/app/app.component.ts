@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-const STYLES = require('../../public/scss/main.scss');
+import { Component } from '@angular/core'
+const STYLES = require('../../public/scss/main.scss')
 
 @Component({
-  selector: 'my-app',
+  selector: 'app',
   templateUrl: './app.component.pug',
   styles: [STYLES, require('./app.component.scss')]
 })
