@@ -32,7 +32,7 @@ export class AnswerAdminComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.utils.isValidContributor(this.route.params)
+        this.utils.isValidMixed(this.route.params)
             .then(
                 (data) => {
                     this.question = new Question(data.question.firstname, data.question.question, data.question.created_at)

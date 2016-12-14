@@ -47,29 +47,6 @@ export class CommonService {
             this.validateEmail(answer.email)
     }
 
-    public isValidContributor(params: any): Promise<any> {
-        return new Promise((resolve) => {
-            params.subscribe((params: any) => {
-                if (params['mixed_shortcode']) {
-                    const mixed_shortcode: string = params['mixed_shortcode']
-                    const contributor_shortcode: string = mixed_shortcode.substr(0, 12)
-                    const share_shortcode: string = mixed_shortcode.substr(12, 24)
-                    this.answerService.getAnswer(share_shortcode)
-                        .then((data) => {
-                            if (data.owner_shortcode !== contributor_shortcode ||
-                                data.share_shortcode !== share_shortcode) {
-                                this.router.navigate(['404'])
-                            } else {
-                                resolve(data)
-                            }
-                        })
-                        .catch((reason: any) => {
-                            this.router.navigate(['404'])
-                        })
-                }
-            })
-        })
-    }
     public isValidMixed(params: any): Promise<any> {
         return new Promise((resolve) => {
             params.subscribe((params: any) => {
