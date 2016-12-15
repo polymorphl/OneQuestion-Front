@@ -38,23 +38,38 @@ export class AnswerAdminComponent implements OnInit {
             .then(
                 (data) => {
                     this.validate = true
-                    this.contributor_shortcode = data.contributor_shortcode
-                    this.share_shortcode = data.question.share_shortcode
-                    this.question = new Question(data.question.firstname || 'unknownName', data.question.question, data.question.created_at)
-                    this.myAnswer = new Answer((data.contributor && data.contributor.firstname) || "unknownName", data.response)
-                    this.responses = data.question.responses.map(
-                        (e: any) => new Answer((e.contributor && e.contributor.firstname) || "unknownName", e.response)
+                    this.share_shortcode = data.share_shortcode
+                    this.question = new Question(data.owner.firstname, data.question, '', (new Date(data.created_at)).toDateString())
+                    this.responses = data.responses.map(
+                        (e: any) => {
+                            if (e.id === data.index_response) {
+                                this.contributor_shortcode = e.contributor.contributor_shortcode
+                                this.myAnswer = new Answer(e.contributor.firstname, e.response, '', (new Date(e.created_at)).toDateString())
+                            }
+                            return new Answer(e.contributor.firstname, e.response, '', (new Date(e.created_at)).toDateString())
+                        }
                     )
                 }
             )
     }
 
     save() {
+        this.answerService.saveAnswer(this.contributor_shortcode + this.share_shortcode, this.myAnswer)
+            .then(
+                data => {
+                    console.log(data)
+                },
+                error => {
+                    this.errorMessage = error.status + " " + error.statusText
+                }
+            )
         this.submitted = true
     }
 
     deleteAnswer() {
-        this.submitted = true
+        this.answerService.deleteAnswer(this.contributor_shortcode + this.share_shortcode, this.myAnswer)
+
+        this.router.navigate(['/question/' + this.share_shortcode])
     }
 
 }

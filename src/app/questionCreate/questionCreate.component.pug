@@ -1,4 +1,4 @@
-div
+div(*ngIf="validate && !sended")
     br
     label(for="firstname") Firstname:
     br
@@ -18,3 +18,7 @@ div
     button((click)="save()") Submit
     div([hidden]="!errorMessage || !errorMessage.length")
     | {{errorMessage}}
+div(*ngIf="!validate")
+    loading
+div(*ngIf="sended")
+    will-redirection

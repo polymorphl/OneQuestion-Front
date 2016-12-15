@@ -56,11 +56,15 @@ export class CommonService {
                     this[serviceName][funcName](code ? owner_shortcode : share_shortcode)
                         .then((data: any) => {
                             if (code) {
-                                if (data.contributor_shortcode !== owner_shortcode) {
-                                    this.router.navigate(['404'])
-                                } else {
-                                    resolve(data)
+                                for (var i = 0, len = data.responses.length; i < len; i++) {
+                                    if (data.responses[i].id === data.index_response &&
+                                        data.responses[i].contributor.contributor_shortcode === owner_shortcode &&
+                                        data.share_shortcode === share_shortcode) {
+                                        resolve(data)
+                                        return
+                                    }
                                 }
+                                this.router.navigate(['404'])
                             } else {
                                 if (data.owner_shortcode !== owner_shortcode ||
                                     data.share_shortcode !== share_shortcode) {

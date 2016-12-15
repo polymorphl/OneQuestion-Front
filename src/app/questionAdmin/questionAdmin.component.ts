@@ -24,6 +24,7 @@ export class QuestionAdminComponent implements OnInit {
     public question: Question = new Question('', '')
     public submitted: boolean = false
     public errorMessage: string = ''
+    public validate: boolean = false
 
     private owner_id: string
     private mixed_shortcode: string
@@ -46,6 +47,7 @@ export class QuestionAdminComponent implements OnInit {
                     this.responses = data.responses.map((e: any) => (
                         new Answer(e.contributor.firstname, e.response, '', (new Date(e.created_at)).toDateString())
                     ))
+                    this.validate = true
                 }
             )
     }

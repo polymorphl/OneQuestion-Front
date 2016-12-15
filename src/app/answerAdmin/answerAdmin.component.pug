@@ -21,4 +21,8 @@ div(*ngIf="validate")
     hr
     div
         question([question]="question")
+        hr
+        br
         responses([responses]="responses")
+div
+    loading(*ngIf="!validate")

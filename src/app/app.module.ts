@@ -20,6 +20,8 @@ import {CommonService} from "../services/common.service";
 import {AnswerService} from "../services/answer.service";
 import {ResponsesComponent} from "../components/responses/responses.component";
 import {QuestionComponent} from "../components/question/question.component";
+import {LoadingComponent} from "../components/loading/loading.component";
+import {WillRedirectionComponent} from "../components/willRedirection/willRedirection.component";
 
 @NgModule({
     imports: [
@@ -39,7 +41,9 @@ import {QuestionComponent} from "../components/question/question.component";
         ThankYouComponent,
         NotFoundComponent,
         ResponsesComponent,
-        QuestionComponent
+        QuestionComponent,
+        LoadingComponent,
+        WillRedirectionComponent
     ],
     bootstrap: [
         AppComponent

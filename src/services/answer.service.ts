@@ -27,8 +27,12 @@ export class AnswerService {
         return this.http.get(this.getResponseUrl + contributor_shortcode)
     }
 
-    public saveAnswer(owner_id: string, answer: Answer): Promise<Answer> {
-        return this.http.post(this.saveResponseUrl + owner_id + "/admin", answer)
+    public saveAnswer(mixed_shortcode: string, answer: Answer): Promise<Answer> {
+        return this.http.post(this.saveResponseUrl + mixed_shortcode + "/edit", answer)
+    }
+
+    public deleteAnswer(mixed_shortcode: string, answer: Answer): Promise<Answer> {
+        return this.http.post(this.saveResponseUrl + mixed_shortcode + "/delete", answer)
     }
 
     public createAnswer(answer: Answer, share_shortcode: string): Promise<any> {

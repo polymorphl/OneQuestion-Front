@@ -1,18 +1,23 @@
-question([question]="question")
-br
-h3 Réponses :
-responses([responses]="responses")
-hr
-div
-    h3 Vazy répond:
-    label(for='firstname') Ton pseudo lapin:
-    input(id="firstname" type='text', name='firstname', [(ngModel)]='newAnswer.firstname')
+div(*ngIf="validate && sended === false")
+    question([question]="question")
     br
-    label(for='email') Ton email:
-    input(id="email" type='text', name='email', [(ngModel)]='newAnswer.email')
-    br
-    label(for='newAnswer') Ta réponse mec:
-    textarea(id="newAnswer" cols='30', rows='10', name='newAnswer', [(ngModel)]='newAnswer.response')
-    button((click)='addResponse()') Submit
-    div([hidden]="!errorMessage || !errorMessage.length")
-    | {{errorMessage}}
+    h3 Réponses :
+    responses([responses]="responses")
+    hr
+    div
+        h3 Vazy répond:
+        label(for='firstname') Ton pseudo lapin:
+        input(id="firstname" type='text', name='firstname', [(ngModel)]='newAnswer.firstname')
+        br
+        label(for='email') Ton email:
+        input(id="email" type='text', name='email', [(ngModel)]='newAnswer.email')
+        br
+        label(for='newAnswer') Ta réponse mec:
+        textarea(id="newAnswer" cols='30', rows='10', name='newAnswer', [(ngModel)]='newAnswer.response')
+        button((click)='addResponse()') Submit
+        div([hidden]="!errorMessage || !errorMessage.length")
+        | {{errorMessage}}
+div(*ngIf="!validate")
+    loading
+div(*ngIf="sended")
+    will-redirection
