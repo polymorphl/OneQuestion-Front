@@ -18,6 +18,7 @@ export class AnswerAdminComponent implements OnInit {
     public response: Answer = new Answer('', '')
     public submitted: boolean = false
     public errorMessage: string = ''
+    public validate: boolean = false
 
     private mixed_shortcode: string
     private contributor_shortcode: string
@@ -32,20 +33,27 @@ export class AnswerAdminComponent implements OnInit {
     ) {}
 
     ngOnInit() {
+        this.validate = false
         this.utils.isValidMixed(this.route.params, "answerService", "getAnswer", "contributor")
             .then(
                 (data) => {
-                    debugger;
-                    this.question = new Question(data.question.firstname || 'defaultName', data.question.question, data.question.created_at)
-                    this.myAnswer = new Answer(data.contributor.firstname, data.response)
+                    this.validate = true
+                    this.contributor_shortcode = data.contributor_shortcode
+                    this.share_shortcode = data.question.share_shortcode
+                    this.question = new Question(data.question.firstname || 'unknownName', data.question.question, data.question.created_at)
+                    this.myAnswer = new Answer((data.contributor && data.contributor.firstname) || "unknownName", data.response)
                     this.responses = data.question.responses.map(
-                        (e: any) => new Answer(e.contributor.firstname, e.response)
+                        (e: any) => new Answer((e.contributor && e.contributor.firstname) || "unknownName", e.response)
                     )
                 }
             )
     }
 
     save() {
+        this.submitted = true
+    }
+
+    deleteAnswer() {
         this.submitted = true
     }
 

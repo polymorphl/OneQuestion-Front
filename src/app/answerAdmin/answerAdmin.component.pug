@@ -1,2 +1,24 @@
-div
-    h1 Yo!
+div(*ngIf="validate")
+    h1 Contributor dashboard
+    div
+        p Good job ! You have just created a new response to the world flow
+        | We just send a message to your email box, to keep links at home.
+        h2 Below is your link
+        div(style="border: 1px solid black")
+            p This is your PRIVATE link, keep it like your eyes... Anyone with this link can edit/delete your response
+            a([routerLink]="['/response/' + contributor_shortcode + share_shortcode + '/edit']") edit link {{'http://onequestion.io/response/' + contributor_shortcode + share_shortcode + '/edit'}}
+    div
+        h2 Edit your response here
+        div
+            input.form-control(type='text', name='firstname', [(ngModel)]='myAnswer.firstname', placeholder='La loutre')
+            textarea(id='', cols='30', rows='10', name='question', [(ngModel)]='myAnswer.response', placeholder="Pourquoi je ne peux m'empecher de casser des trucs sur mon ventre ???")
+            button((click)='save()') Save
+            button((click)='deleteAnswer()') Delete
+            div([hidden]='!submitted || errorMessage.length')
+                | Bravo mec t'as save :)
+            div([hidden]='!errorMessage.length')
+                | {{"oups => " + errorMessage}}
+    hr
+    div
+        question([question]="question")
+        responses([responses]="responses")
